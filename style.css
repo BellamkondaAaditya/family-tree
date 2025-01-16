@@ -1,94 +1,67 @@
-/* General Reset */
+/* Reset */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
   
-  /* Body & Wrapper */
   body {
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background-color: #f8f8f8;
     color: #333;
   }
   
   /* Header */
   header {
     background: #4f68d1;
-    color: #fff;
+    color: white;
+    text-align: center;
     padding: 1rem;
-    text-align: center;
     margin-bottom: 1rem;
   }
   
-  header h1 {
-    margin-bottom: 0.3rem;
-  }
-  
-  /* Add Button */
-  .add-button-container {
-    text-align: center;
+  /* Controls Section */
+  .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
     margin-bottom: 1rem;
   }
-  #addMemberBtn {
-    background: #3cc9b0;
+  
+  #addRootBtn {
+    background-color: #4f68d1;
     border: none;
     color: #fff;
-    padding: 0.75rem 1.25rem;
+    padding: 0.8rem 1.2rem;
     font-size: 1rem;
-    cursor: pointer;
     border-radius: 4px;
-  }
-  #addMemberBtn:hover {
-    background: #33af99;
-  }
-  
-  /* Tree Container */
-  #treeContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 1rem;
-    gap: 1rem;
-  }
-  
-  /* Individual Member Card */
-  .member-card {
-    background: #fff;
-    border-radius: 4px;
-    width: 220px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    overflow: hidden;
     cursor: pointer;
-    text-align: center;
-    transition: transform 0.2s ease;
-  }
-  .member-card:hover {
-    transform: translateY(-3px);
   }
   
-  .member-image {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    background: #ccc;
+  #addRootBtn:hover {
+    background-color: #3c53a3;
   }
-  .member-info {
-    padding: 0.5rem 1rem;
-  }
-  .member-info h3 {
-    margin: 0.5rem 0 0.2rem;
-    font-size: 1.1rem;
-  }
-  .member-info p {
+  
+  .info p {
     font-size: 0.9rem;
-    color: #666;
+    color: #555;
   }
   
-  /* Modal Styles */
+  /* Tree container */
+  #tree {
+    width: 100%;
+    height: calc(100vh - 180px);
+    /* FamilyTreeJS will automatically fill this container */
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    overflow: auto;
+  }
+  
+  /* Modal styles */
   .modal {
-    display: none; /* Hidden by default */
-    position: fixed;
+    display: none; 
+    position: fixed; 
     z-index: 999;
     left: 0; 
     top: 0;
@@ -104,47 +77,82 @@
     padding: 1.5rem;
     border-radius: 6px;
     width: 400px;
+    max-width: 90%;
     position: relative;
   }
   
   .close {
-    color: #aaa;
+    color: #999;
     float: right;
     font-size: 1.4rem;
     font-weight: bold;
+    margin-top: -6px;
     cursor: pointer;
   }
-  
   .close:hover {
-    color: #000;
+    color: #333;
   }
   
-  /* Form */
-  #memberForm {
+  /* Form inside modal */
+  #personForm {
     display: flex;
     flex-direction: column;
   }
-  #memberForm label {
-    margin: 0.5rem 0 0.2rem;
+  #personForm label {
+    margin: 0.7rem 0 0.2rem;
   }
-  #memberForm input[type="text"],
-  #memberForm textarea,
-  #memberForm select {
+  #personForm input[type="text"],
+  #personForm select {
     padding: 0.5rem;
+    border: 1px solid #ccc;
     font-size: 1rem;
-    margin-bottom: 0.5rem;
+    border-radius: 4px;
   }
-  #memberForm button[type="submit"] {
+  #personForm input[type="file"] {
+    margin-top: 0.5rem;
+  }
+  .saveBtn {
     background: #4f68d1;
     color: #fff;
     border: none;
     padding: 0.7rem;
     font-size: 1rem;
     cursor: pointer;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
     border-radius: 4px;
   }
-  #memberForm button[type="submit"]:hover {
-    background: #3a55a4;
+  .saveBtn:hover {
+    background: #3c53a3;
+  }
+  
+  /* Delete Modal */
+  #deleteModal .modal-content {
+    text-align: center;
+  }
+  .delete-modal-actions {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+  }
+  #confirmDeleteBtn {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  #confirmDeleteBtn:hover {
+    background: #d32f2f;
+  }
+  #cancelDeleteBtn {
+    background: #ccc;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  #cancelDeleteBtn:hover {
+    background: #aaa;
   }
   

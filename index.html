@@ -2,59 +2,73 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Family Tree</title>
+  <title>Family Tree Prototype</title>
+  <!-- Our CSS -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Balkan FamilyTreeJS - load from CDN -->
+  <script src="https://cdn.balkan.app/js/familytree.js"></script>
 </head>
 <body>
 
-  <!-- Top Navigation / Header -->
   <header>
     <h1>My Family Tree</h1>
-    <p>A prototype for exploring family connections.</p>
+    <p>A simple, interactive family tree prototype.</p>
   </header>
 
-  <!-- Container for the "Add New Member" button -->
-  <div class="add-button-container">
-    <button id="addMemberBtn">+ Add New Member</button>
+  <div class="controls">
+    <button id="addRootBtn">+ Add New Root Person</button>
+    <div class="info">
+      <p>Click on a node to edit or delete.</p>
+    </div>
   </div>
 
-  <!-- Main container where the tree (cards) will be displayed -->
-  <div id="treeContainer"></div>
+  <!-- Container where the Balkan FamilyTree will render -->
+  <div id="tree"></div>
 
-  <!-- Modal / Popup for adding or editing a member -->
-  <div id="memberModal" class="modal">
+  <!-- Hidden modal for Add/Edit Person -->
+  <div id="personModal" class="modal">
     <div class="modal-content">
       <span id="closeModal" class="close">&times;</span>
-      <h2 id="modalTitle">Add / Edit Member</h2>
-      
-      <form id="memberForm">
-        <label for="memberName">Name:</label>
-        <input type="text" id="memberName" required />
+      <h2 id="modalTitle">Add Person</h2>
 
-        <label for="memberDescription">Description:</label>
-        <textarea id="memberDescription" rows="3"></textarea>
+      <form id="personForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required />
 
-        <label for="memberParent">Parent (optional):</label>
-        <select id="memberParent">
-          <!-- Dynamically populated with existing members -->
+        <label for="title">Description/Title:</label>
+        <input type="text" id="title" placeholder="(Optional)" />
+
+        <label for="parent">Parent:</label>
+        <select id="parent">
+          <!-- Filled dynamically -->
         </select>
 
-        <label for="memberImage">Profile Image (optional):</label>
-        <input type="file" id="memberImage" accept="image/*" />
+        <label for="imageInput">Profile Image:</label>
+        <input type="file" id="imageInput" accept="image/*" />
 
-        <!-- Hidden field to store the doc ID if editing -->
-        <input type="hidden" id="memberId" />
+        <!-- Hidden field to track editing vs adding -->
+        <input type="hidden" id="editId" />
 
-        <button type="submit">Save</button>
+        <button type="submit" class="saveBtn">Save</button>
       </form>
     </div>
   </div>
 
-  <!-- Firebase + Our Script -->
-  <!-- Replace with your own Firebase config -->
-  <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-storage-compat.js"></script>
+  <!-- Hidden modal for Delete Confirmation -->
+  <div id="deleteModal" class="modal">
+    <div class="modal-content">
+      <h2>Delete Person</h2>
+      <p>Are you sure you want to delete <span id="deleteName"></span>?</p>
+      <div class="delete-modal-actions">
+        <button id="confirmDeleteBtn" class="danger">Delete</button>
+        <button id="cancelDeleteBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Our main JS -->
   <script src="script.js"></script>
+
 </body>
 </html>
