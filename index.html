@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Family Tree</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Top Navigation / Header -->
+  <header>
+    <h1>My Family Tree</h1>
+    <p>A prototype for exploring family connections.</p>
+  </header>
+
+  <!-- Container for the "Add New Member" button -->
+  <div class="add-button-container">
+    <button id="addMemberBtn">+ Add New Member</button>
+  </div>
+
+  <!-- Main container where the tree (cards) will be displayed -->
+  <div id="treeContainer"></div>
+
+  <!-- Modal / Popup for adding or editing a member -->
+  <div id="memberModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <h2 id="modalTitle">Add / Edit Member</h2>
+      
+      <form id="memberForm">
+        <label for="memberName">Name:</label>
+        <input type="text" id="memberName" required />
+
+        <label for="memberDescription">Description:</label>
+        <textarea id="memberDescription" rows="3"></textarea>
+
+        <label for="memberParent">Parent (optional):</label>
+        <select id="memberParent">
+          <!-- Dynamically populated with existing members -->
+        </select>
+
+        <label for="memberImage">Profile Image (optional):</label>
+        <input type="file" id="memberImage" accept="image/*" />
+
+        <!-- Hidden field to store the doc ID if editing -->
+        <input type="hidden" id="memberId" />
+
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Firebase + Our Script -->
+  <!-- Replace with your own Firebase config -->
+  <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-storage-compat.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
