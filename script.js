@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Setup event listeners
   document.getElementById("addRootBtn").addEventListener("click", () => {
     openAddModal(null);
+    print('hello')
   });
   document.getElementById("closeModal").addEventListener("click", closePersonModal);
   document.getElementById("personForm").addEventListener("submit", onPersonFormSubmit);
